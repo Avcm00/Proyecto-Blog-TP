@@ -1,7 +1,8 @@
 import React from "react";
+import '../Styles/principal.css'
 
-function principalPage(){
-  return(
+function PrincipalPage() {
+  return (
     <div className="paginaP">
       <div className="barraN">
         <header>
@@ -19,10 +20,11 @@ function principalPage(){
       </div>
       <div className="contenido">
         <div className="objeto">
-
+          {/* Aquí puedes agregar el contenido principal de la página */}
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default principalPage
+
+export default PrincipalPage;

@@ -1,12 +1,21 @@
+import React, { useState } from 'react';
+import Loginstart from './componentes/login';
+import PrincipalPage from './componentes/index';
 
-import './App.css';
-import Login from './componentes/login'
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <div className="App">
-
-      <Login />
-
+      {isLoggedIn ? (
+        <PrincipalPage />
+      ) : (
+        <Loginstart onLogin={handleLogin} />
+      )}
     </div>
   );
 }
