@@ -11,11 +11,13 @@ function App() {
 
   return (
     <div className="App">
+      <div className='contener'>
       {isLoggedIn ? (
         <PrincipalPage />
       ) : (
         <Loginstart onLogin={handleLogin} />
       )}
+      </div>
     </div>
   );
 }

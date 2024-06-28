@@ -1,7 +1,10 @@
-import React from "react";
-import '../Styles/principal.css'
+import React, { useState } from "react";
+import "../Styles/principal.css";
+import CrearBlog from "./crearblog";
 
 function PrincipalPage() {
+  const [showCrearBlog, setShowCrearBlog] = useState(false);
+
   return (
     <div className="paginaP">
       <div className="barraN">
@@ -16,13 +19,17 @@ function PrincipalPage() {
               <li className="icono6"><a href="#">Entretenimiento</a></li>
             </ul>
           </nav>
+          <li>
+            <a href="#" onClick={() => setShowCrearBlog(true)}>Crear Blog</a>
+          </li>
         </header>
       </div>
       <div className="contenido">
         <div className="objeto">
-          {/* Aquí puedes agregar el contenido principal de la página */}
+          {showCrearBlog && <CrearBlog onCancel={() => setShowCrearBlog(false)} />}
         </div>
       </div>
+      <footer>@2024 Derechos reservados</footer>
     </div>
   );
 }
