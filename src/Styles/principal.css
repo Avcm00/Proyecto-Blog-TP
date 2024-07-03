@@ -1,3 +1,61 @@
-.paginaP{
-    
-}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .paginaP {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vh;
+  }
+  
+
+  .barraN {
+    background-color: #333;
+    color: white;
+  }
+  
+  .barraN header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .barraN nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .barraN nav ul li {
+    margin-right: 20px;
+  }
+  
+  .barraN nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .barraN nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+  }
+  
+
+  .contenido {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    width: 100%;
+  }
+   

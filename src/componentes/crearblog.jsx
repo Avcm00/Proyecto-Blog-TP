@@ -1,6 +1,7 @@
 import React from "react";
 import "../Styles/blog.css";
 
+
 function CrearBlog({ onCancel }) {
   return (
     <div className="box-crearblog">
@@ -31,9 +32,9 @@ function CrearBlog({ onCancel }) {
             </div>
             <div className="multimedia">
               <label htmlFor="multimedia">
-                imagen o video
+                imagen
                 <div className="entradamultimedia">
-                  <input type="file" placeholder="Arrastre su Archivo" />
+                  <input type="file" accept="image/*" placeholder="Arrastre su Archivo" />
                 </div>
               </label>
             </div>
@@ -52,7 +53,7 @@ function CrearBlog({ onCancel }) {
             <button className="btn-cancelar" onClick={onCancel}>
               Cancelar
             </button>
-            <button className="btn-publicar" onClick={() => { /* Publicar acción aquí */ }}>
+            <button className="btn-publicar" onClick={() => { /*  */ }}>
               Publicar
             </button>
           </div>

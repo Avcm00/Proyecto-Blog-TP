@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Loginstart from './componentes/login';
-import PrincipalPage from './componentes/index';
+import PrincipalPage from './componentes/index.jsx';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,14 +11,13 @@ function App() {
 
   return (
     <div className="App">
-      <div className='contener'>
       {isLoggedIn ? (
-        <PrincipalPage />
+        <PrincipalPage/> 
       ) : (
         <Loginstart onLogin={handleLogin} />
       )}
       </div>
-    </div>
+    
   );
 }
 
