@@ -42,7 +42,7 @@ function Loginstart({ onLogin }) {
         </div>
       </div>
       
-      <div className="footer">
+      <div className="foot">
         <button className="button" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
       <div>
