@@ -1,5 +1,7 @@
+// CrearBlog.js
 import React, { useState } from "react";
 import "../Styles/blog.css";
+import { Blog } from "../models"; 
 
 function CrearBlog({ onPublicar, onCancel }) {
   const [titulo, setTitulo] = useState("");
@@ -17,20 +19,23 @@ function CrearBlog({ onPublicar, onCancel }) {
 
   const handleImagenChange = (e) => {
     const file = e.target.files[0];
-    setImagen(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagen(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleDescripcionChange = (e) => {
-    setDescripcion(e.target.value);
+    
+      setDescripcion(e.target.value);
+
   };
 
   const handlePublicar = () => {
-    const nuevoBlog = {
-      titulo,
-      categoria,
-      imagen,
-      descripcion,
-    };
+    const nuevoBlog = new Blog(titulo, categoria, imagen, descripcion);
 
     onPublicar(nuevoBlog);
     onCancel();
