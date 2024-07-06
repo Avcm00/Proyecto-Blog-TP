@@ -15,17 +15,18 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    height:auto;
-    max-width: 600px;
-    width: 500%;
+    max-width: 80%; /* Ajusta el ancho máximo según tu diseño */
+    max-height: 80%; /* Ajusta la altura máxima del modal */
+    overflow: auto; /* Permite el scroll dentro del modal */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: slide-down 0.3s ease-out;
   }
   
   .modal-content img {
-    max-width: 100%;
+    max-width: 60%; /* Ajusta el tamaño máximo de la imagen */
     border-radius: 5px;
     margin-bottom: 15px;
+    align-self: center; /* Centra la imagen verticalmente */
   }
   
   .modal-content h2 {
@@ -41,6 +42,11 @@
     font-size: 1.5em;
     cursor: pointer;
     color: #333;
+  }
+  
+  .modal-body {
+    margin-top: 30px; /* Espacio superior para el título y el botón de cerrar */
+    margin-bottom: 20px; /* Espacio inferior para el botón de cerrar */
   }
   
   @keyframes slide-down {
