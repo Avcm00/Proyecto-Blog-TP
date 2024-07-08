@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BlogModal from "./modal";
-
+import { truncate } from "../funcionesR";
 function PaginaBlogs({ blogs, categoria }) {
   const [listBlog, setListBlog] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -9,10 +9,7 @@ function PaginaBlogs({ blogs, categoria }) {
     setListBlog(blogs.filter(blog => blog.categoria === categoria));
   }, [blogs, categoria]);
 
-  const truncateDescription = (description) => {
-    const words = description.split(" ");
-    return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : description;
-  };
+  
 
   const openModal = (blog) => {
     console.log("Abriendo modal para:", blog);
@@ -29,8 +26,9 @@ function PaginaBlogs({ blogs, categoria }) {
           <div key={index} className="blog-card">
             {blog.imagen && <img src={blog.imagen} alt="Blog" />}
             <div className="blog-card-content">
-              <h3>{blog.titulo}</h3>
-              <p>{truncateDescription(blog.descripcion)}</p>
+              <h3>{truncate(blog.titulo,15)}</h3>
+              <p>Categoría: {blog.categoria} <button className="btn-publicar">editar</button><button className="btn-cancelar">eliminar</button></p>
+              <p>{truncate(blog.descripcion,50)}</p>
               <button className="btn-publicar" onClick={() => openModal(blog)}>Leer más</button>
             </div>
           </div>

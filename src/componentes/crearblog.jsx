@@ -1,7 +1,7 @@
 // CrearBlog.js
 import React, { useState } from "react";
 import "../Styles/blog.css";
-import { Blog } from "../models"; 
+import { Blog } from "./funcionesR"; 
 
 function CrearBlog({ onPublicar, onCancel }) {
   const [titulo, setTitulo] = useState("");

@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import '../../Styles/modal.css';
 
-const BlogModal = ({ isOpen, onRequestClose, blog }) => {
+export const BlogModal = ({ isOpen, onRequestClose, blog }) => {
   if (!blog) {
     return null; 
   }

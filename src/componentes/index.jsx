@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Modal from "react-modal"; // Importa Modal de react-modal
+import Modal from "react-modal"; 
 import Navbar from "./navegacion/navbar";
 import CrearBlog from "../componentes/crearblog";
 import Footer from './footer';
-import { ListBlog } from "../models";
+
 import "./App.css";
 import PaginaBlogs from "./Paginas/PaginaBlogs.jsx";
 import BlogModal from "./Paginas/modal";
+import { truncate , ListBlog } from "./funcionesR.jsx";
 
-// Configura el elemento principal de la aplicación para react-modal
 Modal.setAppElement("#root");
 
 function App() {
@@ -23,13 +23,9 @@ function App() {
     setListBlog(newListBlog);
   };
 
-  const truncateDescription = (description) => {
-    const words = description.split(" ");
-    return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : description;
-  };
 
   const openModal = (blog) => {
-    console.log(blog); // Verifica que los datos del blog están correctos
+    console.log(blog); 
     setSelectedBlog(blog);
   };
 
@@ -42,9 +38,9 @@ function App() {
         {blogs.map((blog, index) => (
           <div key={index} className="blog-card">
             {blog.imagen && <img src={blog.imagen} alt="Blog" />}
-            <p>Categoría: {blog.categoria}</p>
-            <h3>{blog.titulo}</h3>
-            <p>{truncateDescription(blog.descripcion)}</p>
+            <p>Categoría: {blog.categoria} <button className="btn-publicar">editar</button><button className="btn-cancelar">eliminar</button></p>
+            <h3>{truncate(blog.titulo, 20)}</h3>
+            <p>{truncate(blog.descripcion, 50)}</p>
             <button className="btn-publicar" onClick={() => openModal(blog)}>Leer más</button>
           </div>
         ))}
@@ -62,6 +58,10 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <div className="pagina-contenido" >
+        <h1>Bienvenido a mi Proyecto Blog</h1>
+        <p>Pudes comenzar creando o </p>
+      </div>
       <Routes>
         <Route path="/" element={<Inicio blogs={listBlog.lista} />} />
         <Route path="/deportes" element={<PaginaBlogs blogs={listBlog.lista} categoria="Deportes" />} />

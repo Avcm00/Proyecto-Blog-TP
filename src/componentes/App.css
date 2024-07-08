@@ -1,9 +1,12 @@
+
+
 .blogs-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 40px;
   margin: 20px 0;
   padding: 10px;
+  font-size: 85%
 }
 
 .blog-card {
@@ -23,7 +26,13 @@
   border-radius: 8px;
   margin-bottom: 20px;
 }
-
+p{
+  display: flex;
+ gap: 15px;
+  padding: 0;
+  margin:0;
+  
+}
 .blog-card h3 {
   margin: 10px 0;
   color: #333;
