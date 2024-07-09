@@ -1,62 +1,84 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%; /* Ajusta el ancho máximo según tu diseño */
+  max-height: 80%; /* Ajusta la altura máxima del modal */
+  overflow: auto; /* Permite el scroll dentro del modal */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: slide-down 0.3s ease-out;
+  display: flex;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  flex: 1;
+  margin-top: 10px;
+  display: flex;
+  padding-right: 20px; /* Espacio para los comentarios */
+}
+
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  margin: 10px 0;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.comentario {
+  flex: 0 0 25%; /* Ajusta el ancho del div de comentarios, aquí es 25% */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px; /* Espacio entre contenido principal y comentarios */
+}
+
+.head-comentario label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.head-comentario input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
   }
-  
-  .modal-content {
-    position: relative;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 80%; /* Ajusta el ancho máximo según tu diseño */
-    max-height: 80%; /* Ajusta la altura máxima del modal */
-    overflow: auto; /* Permite el scroll dentro del modal */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    animation: slide-down 0.3s ease-out;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  .modal-content img {
-    max-width: 60%; /* Ajusta el tamaño máximo de la imagen */
-    border-radius: 5px;
-    margin-bottom: 15px;
-    align-self: center; /* Centra la imagen verticalmente */
-  }
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .modal-content button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #333;
-  }
-  
-  .modal-body {
-    margin-top: 30px; /* Espacio superior para el título y el botón de cerrar */
-    margin-bottom: 20px; /* Espacio inferior para el botón de cerrar */
-  }
-  
-  @keyframes slide-down {
-    from {
-      transform: translateY(-20%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
+}

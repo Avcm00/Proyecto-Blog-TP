@@ -5,6 +5,7 @@ export class Blog {
       this.categoria = categoria;
       this.imagen = imagen;
       this.descripcion = descripcion;
+      this.comentario = []
     }
   }
   //Clase Lista de Blogs

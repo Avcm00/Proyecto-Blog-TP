@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import Navbar from "./navegacion/navbar";
 import CrearBlog from "../componentes/crearblog";
 import Footer from './footer';
-
 import "./App.css";
 import PaginaBlogs from "./Paginas/PaginaBlogs.jsx";
 import BlogModal from "./Paginas/modal";
@@ -23,6 +22,19 @@ function App() {
     setListBlog(newListBlog);
   };
 
+  const handleAddComment = (titulo, comentario) => {
+    const updatedListBlog = listBlog.lista.map(blog => {
+      if (blog.titulo === titulo) {
+        if (!blog.comentarios) {
+          blog.comentarios = [];
+        }
+        blog.comentarios.push(comentario);
+      }
+      return blog;
+    });
+    setListBlog({ ...listBlog, lista: updatedListBlog });
+    setSelectedBlog(prev => ({ ...prev, comentarios: [...(prev?.comentarios || []), comentario] }));
+  };
 
   const openModal = (blog) => {
     console.log(blog); 
@@ -33,6 +45,7 @@ function App() {
 
   const Inicio = ({ blogs }) => (
     <div>
+      {contenido()}
       <h2>Últimos Blogs</h2>
       <div className="blogs-container">
         {blogs.map((blog, index) => (
@@ -50,17 +63,25 @@ function App() {
           isOpen={!!selectedBlog} 
           onRequestClose={closeModal} 
           blog={selectedBlog} 
+          onAddComment={handleAddComment} 
         />
       )}
+    </div>
+  );
+
+  let contenido = () => (
+    <div className="contenido">
+      <h1>Bienvenido a mi Proyecto Blog</h1>
+      <p>Puedes comenzar creando blogs o revisando el contenido de otros usuarios</p>
+      <img src="https://cdn.pixabay.com/photo/2015/09/04/23/28/wordpress-923188_1280.jpg" alt="" />
     </div>
   );
 
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="pagina-contenido" >
-        <h1>Bienvenido a mi Proyecto Blog</h1>
-        <p>Pudes comenzar creando o </p>
+      <div className="pagina-contenido">
+        
       </div>
       <Routes>
         <Route path="/" element={<Inicio blogs={listBlog.lista} />} />
