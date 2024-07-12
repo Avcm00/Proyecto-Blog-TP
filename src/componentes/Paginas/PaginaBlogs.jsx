@@ -17,11 +17,10 @@ function PaginaBlogs({ blogs, categoria }) {
 
   const closeModal = () => setSelectedBlog(null);
 
-  const handleAddComment = (comment) => {
-    const blogTitle = selectedBlog.titulo;
-    setBlogComments((prevComments) => ({
+  const handleAddComment = (titulo, comentario) => {
+    setBlogComments(prevComments => ({
       ...prevComments,
-      [blogTitle]: [...(prevComments[blogTitle] || []), comment],
+      [titulo]: [...(prevComments[titulo] || []), comentario]
     }));
   };
 
@@ -41,7 +40,7 @@ function PaginaBlogs({ blogs, categoria }) {
             ...selectedBlog,
             comentarios: blogComments[selectedBlog.titulo] || [],
           }} 
-          onAddComment={handleAddComment} 
+          onAddComment={(comentario) => handleAddComment(selectedBlog.titulo, comentario)} 
         />
       )}
     </div>

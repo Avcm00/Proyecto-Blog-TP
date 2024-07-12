@@ -71,22 +71,27 @@ h6 {
 }
 .contenido {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.contenido img {
-  max-width: 200px; 
-  height: auto;
-  border-radius: 10px; 
-}
-
-.contenido h1 {
+  flex-direction: row;
+  background-color: #333;
+ gap: 250px;
+  height: 100vh;
+  width: 100%;
+  padding: 100px;
   margin: 0;
+}
+
+.contenido img{
+  height: 400px;
+  width: 600px;
+  border-radius: 10px; 
+  left: initial;
+}
+
+.contenido h1{
+  color: #fff;
 }
 
 .contenido p {
-  margin: 0;
+  color: #fff;
 }
 

@@ -28,7 +28,7 @@ const CommentSection = ({ comments, onAddComment }) => {
           <button className="btn-publicar" onClick={handleAddComment}>
             Enviar
           </button>
-        </div>
+        </div><hr />
         <div className='body-comentario'>
           {comments && comments.map((comentario, index) => (
             <p key={index}>{comentario}</p>

@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Modal from "react-modal"; 
+import Modal from "react-modal";
 import Navbar from "./navegacion/navbar";
 import CrearBlog from "../componentes/crearblog";
 import Footer from './footer';
 import "./App.css";
 import PaginaBlogs from "./Paginas/PaginaBlogs.jsx";
-import BlogModal from "./Paginas/modal";
-import { truncate , ListBlog } from "./funcionesR.jsx";
+import BlogModal from "./Paginas/BlogModal";
+import { truncate, ListBlog, blogscargados } from "./funcionesR.jsx";
+import Editarblog from './editarblog'
 
 Modal.setAppElement("#root");
 
 function App() {
-  const [listBlog, setListBlog] = useState(new ListBlog());
+  const [listBlog, setListBlog] = useState(blogscargados());
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [blogComments, setBlogComments] = useState({});
 
   const handlePublicarBlog = (nuevoBlog) => {
     const newListBlog = new ListBlog();
@@ -23,6 +25,11 @@ function App() {
   };
 
   const handleAddComment = (titulo, comentario) => {
+    setBlogComments(prevComments => ({
+      ...prevComments,
+      [titulo]: [...(prevComments[titulo] || []), comentario]
+    }));
+
     const updatedListBlog = listBlog.lista.map(blog => {
       if (blog.titulo === titulo) {
         if (!blog.comentarios) {
@@ -37,7 +44,6 @@ function App() {
   };
 
   const openModal = (blog) => {
-    console.log(blog); 
     setSelectedBlog(blog);
   };
 
@@ -62,8 +68,11 @@ function App() {
         <BlogModal 
           isOpen={!!selectedBlog} 
           onRequestClose={closeModal} 
-          blog={selectedBlog} 
-          onAddComment={handleAddComment} 
+          blog={{
+            ...selectedBlog,
+            comentarios: blogComments[selectedBlog.titulo] || [],
+          }} 
+          onAddComment={(comentario) => handleAddComment(selectedBlog.titulo, comentario)} 
         />
       )}
     </div>
@@ -71,18 +80,20 @@ function App() {
 
   let contenido = () => (
     <div className="contenido">
-      <h1>Bienvenido a mi Proyecto Blog</h1>
-      <p>Puedes comenzar creando blogs o revisando el contenido de otros usuarios</p>
-      <img src="https://cdn.pixabay.com/photo/2015/09/04/23/28/wordpress-923188_1280.jpg" alt="" />
+      <div className="titulo">
+        <h1 className="titulo-contenido">Bienvenido a mi Proyecto Blog</h1>
+        <br /><br />
+        <p className="titulo-descripcion">Puedes comenzar creando blogs o revisando el contenido de otros usuarios</p>
+        <button className="btn-publicar">Algo Xd</button>
+      </div>
+      <img className='imagen-contenido' src="https://cdn.pixabay.com/photo/2015/09/04/23/28/wordpress-923188_1280.jpg" alt="" />
     </div>
   );
 
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="pagina-contenido">
-        
-      </div>
+      <div className="pagina-contenido"></div>
       <Routes>
         <Route path="/" element={<Inicio blogs={listBlog.lista} />} />
         <Route path="/deportes" element={<PaginaBlogs blogs={listBlog.lista} categoria="Deportes" />} />
@@ -90,7 +101,8 @@ function App() {
         <Route path="/viajes" element={<PaginaBlogs blogs={listBlog.lista} categoria="Viajes" />} />
         <Route path="/educacion" element={<PaginaBlogs blogs={listBlog.lista} categoria="Educacion" />} />
         <Route path="/entretenimiento" element={<PaginaBlogs blogs={listBlog.lista} categoria="Entretenimiento" />} />
-        <Route path="/crearblog" element={<CrearBlog onPublicar={handlePublicarBlog} onCancel={() => {}} />} />
+        <Route path="/crearblog" element={<CrearBlog onPublicar={handlePublicarBlog} onCancel={() => {<Inicio/>}} />} />
+        <Route path="/editarblog" element={<Editarblog onPublicar={handlePublicarBlog} onCancel={() => {}} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
